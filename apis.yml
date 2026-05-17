@@ -7,7 +7,7 @@ description: >-
   portal or openly-published APIs were located; integrations are typically
   delivered via private partner connectivity (EDI/B2B) and account-managed
   channels.
-type: Contract
+kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Customs
