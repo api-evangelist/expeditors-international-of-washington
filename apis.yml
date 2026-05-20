@@ -23,6 +23,8 @@ access: Partner
 specificationVersion: '0.19'
 apis: []
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/expeditors
   - type: Website
     url: https://www.expeditors.com
 maintainers:
