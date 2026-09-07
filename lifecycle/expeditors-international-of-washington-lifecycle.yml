@@ -1,0 +1,40 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/Version_Policy.htm
+versioning:
+  scheme: uri-path
+  semver: true
+  current: v2
+  docs: https://help.expeditors.com/globalhelp/shipment_api/Version_Policy.htm
+  note: >-
+    The API follows semantic versioning — MAJOR for incompatible changes, MINOR
+    for backwards-compatible additions, PATCH for backwards-compatible fixes.
+    Only the major version appears in the base path (e.g. /v2).
+deprecation:
+  policy_url: https://help.expeditors.com/globalhelp/shipment_api/Version_Policy.htm
+  policy: Previous major versions are hosted for six (6) months after supersession, then decommissioned.
+  window_months: 6
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    A stated calendar window exists, but Expeditors documents no RFC 8594
+    Sunset or Deprecation response headers, so the retirement clock is not
+    machine-readable at runtime.
+sla:
+  url: null
+  uptime_target: null
+  note: No published SLA or uptime commitment was found on the public developer surface.
+status_page: null
+status_page_note: >-
+  No status page. Service interruptions and releases are communicated two ways
+  only — a "System Notifications" block on the API Developer Center landing
+  page, and email to the business and technical contacts supplied at
+  registration. Both are documented at
+  https://help.expeditors.com/globalhelp/shipment_api/Notifications.htm
+health_endpoint:
+  path: /tracking/v2/health
+  auth_required: true
+  observed_status: 401
+  probed: '2026-09-07'
+  note: A health endpoint exists but is token-gated, so it is not an anonymous availability signal.
+deprecated_operations: []

@@ -1,0 +1,170 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
+note: >-
+  Entity graph read from the published Data Types reference. Expeditors ships
+  no OpenAPI, so field lists and relationships are transcribed from the docs
+  rather than derived from a spec; only types and fields the documentation
+  names are recorded.
+entities:
+  - name: AccessToken
+    description: Bearer token minted by the client-credentials grant.
+    fields: [access_token, token_type, expires_in, scope]
+  - name: Shipment
+    id_field: id
+    id_format: String, 3 to 12 characters
+    description: A freight shipment handled by Expeditors. Root resource of the tracking surface.
+    fields:
+      - id
+      - status
+      - lastUpdateTime
+      - origin
+      - destination
+      - delivery
+      - loading
+      - unlading
+      - clearance
+      - mode
+      - vessel
+      - voyageFlight
+      - freightTerms
+      - serviceType
+      - quantity
+      - weight
+      - volume
+      - carrier
+      - consignee
+      - shipper
+      - actualReceiptTimes
+      - requestedDeliveryTime
+      - goodsDesc
+      - hazardous
+      - securityFilingParty
+  - name: ShipmentSummary
+    description: Projection of Shipment carrying id, status, lastUpdateTime, origin and destination.
+    fields: [id, status, lastUpdateTime, origin, destination]
+  - name: Count
+    description: Total number of resources matching a query.
+    fields: [count]
+  - name: AddressInformation
+    description: Shipper and consignee party addresses for a shipment.
+    fields: [shipper, consignee]
+    subfields: [name, address1, address2, city, state, zip, countryCode]
+  - name: ExpeditorsBranchReference
+    description: An Expeditors branch office acting as origin, destination, loading, unlading, delivery or clearance point.
+    fields: [name, code]
+  - name: Measure
+    description: A quantity, weight or volume value with its unit of measure.
+    fields: [value, unit]
+  - name: Event
+    description: A dated milestone on a shipment, container or consignment.
+    fields: [description, time, origin, destination, remarks, invoice, code]
+  - name: Reference
+    description: A trace reference (customer PO, booking, bill of lading and similar) attached to a shipment.
+    fields: [refType, refNumber]
+  - name: Document
+    description: A document image attached to a shipment or consignment, downloadable by callback URL or as Base64.
+    fields: [documentType, group, label, fileSize, numberOfPages, downloadCallbackURL, Base64EncodedDocument]
+  - name: Container
+    description: A physical container tracked by Expeditors, with its own events and line items.
+  - name: ContainerSummary
+    description: Summary projection of Container.
+  - name: OMContainer
+    description: An order-management container, with its own events and items.
+  - name: Consignment
+    description: A consignment or cross-dock movement, with events, references and documents.
+  - name: ConsignmentSummary
+    description: Summary projection of Consignment.
+relationships:
+  - from: Shipment
+    to: Event
+    type: has_many
+    via: GET shipments/{id}/events
+  - from: Shipment
+    to: Reference
+    type: has_many
+    via: GET shipments/{id}/references
+  - from: Shipment
+    to: Document
+    type: has_many
+    via: GET shipments/{id}/documents
+  - from: Shipment
+    to: AddressInformation
+    type: has_one
+    via: GET shipments/{id}/address_information
+  - from: Shipment
+    to: ExpeditorsBranchReference
+    type: has_many
+    via: origin, destination, delivery, loading, unlading, clearance
+  - from: Shipment
+    to: Measure
+    type: has_many
+    via: quantity, weight, volume
+  - from: Container
+    to: Event
+    type: has_many
+    via: GET containers/{id}/events
+  - from: Container
+    to: Line
+    type: has_many
+    via: GET containers/{id}/lines
+  - from: OMContainer
+    to: Event
+    type: has_many
+    via: GET containers/om/{id}/events
+  - from: OMContainer
+    to: Item
+    type: has_many
+    via: GET containers/om/{id}/items
+  - from: Consignment
+    to: Event
+    type: has_many
+    via: GET consignments/{id}/events
+  - from: Consignment
+    to: Reference
+    type: has_many
+    via: GET consignments/{id}/references
+  - from: Consignment
+    to: Document
+    type: has_many
+    via: GET consignments/{id}/documents
+  - from: Event
+    to: ExpeditorsBranchReference
+    type: has_many
+    via: origin, destination
+operations:
+  note: >-
+    The 27 documented operations, transcribed from the API Developer Center
+    navigation. Recorded as a documented inventory only — no OpenAPI is
+    published and none is authored here.
+  paths:
+    - POST /oauth2/token
+    - GET /health
+    - GET /shipments
+    - GET /shipments/count
+    - GET /shipments/{id}
+    - GET /shipments/{id}/address_information
+    - GET /shipments/{id}/documents
+    - GET /shipments/{id}/documents/{documentId}/download
+    - GET /shipments/{id}/documents/download
+    - GET /shipments/{id}/events
+    - GET /shipments/{id}/references
+    - GET /shipments/exactmatch
+    - GET /containers
+    - GET /containers/{id}
+    - GET /containers/{id}/events
+    - GET /containers/{id}/lines
+    - GET /containers/exactmatch
+    - GET /containers/om
+    - GET /containers/om/{id}
+    - GET /containers/om/{id}/events
+    - GET /containers/om/{id}/items
+    - GET /containers/om/exactmatch
+    - GET /consignments
+    - GET /consignments/{id}
+    - GET /consignments/{id}/events
+    - GET /consignments/{id}/references
+    - GET /consignments/exactmatch
+    - GET /consignments/{id}/documents
+    - GET /consignments/{id}/documents/{documentId}/download
+    - GET /consignments/{id}/documents/download

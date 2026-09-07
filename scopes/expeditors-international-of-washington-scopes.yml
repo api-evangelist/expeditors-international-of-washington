@@ -1,0 +1,20 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm
+docs: https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
+note: >-
+  The Tracking API issues a single-scope client-credentials token. Expeditors
+  documents no scope reference page and no per-resource permissions; the docs
+  state explicitly that "this API has only one type of token", which is why a
+  403 insufficient_scope "should not occur".
+schemes:
+  - name: OAuth2ClientCredentials
+    source: https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm
+    flows:
+      - flow: clientCredentials
+        tokenUrl: https://api.expeditors.com/tracking/v2/oauth2/token
+scopes:
+  - scope: application
+    description: Indicates the token is valid only for the Expeditors Tracking service. The only scope the API issues.
+    flows: [clientCredentials]
+    sources: [https://help.expeditors.com/globalhelp/shipment_api/data_types.htm]

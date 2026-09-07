@@ -1,0 +1,106 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/best_practices.htm
+docs:
+  - https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+  - https://help.expeditors.com/globalhelp/shipment_api/best_practices.htm
+  - https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
+api_style:
+  architecture: REST
+  media_type: application/json
+  encoding: UTF-8 only; parameter values must be URL-encoded per W3C. Encoded spaces and other non-alphanumeric values cause HTTP 500.
+  case_sensitivity: Request parameters and parameter values are case-sensitive.
+  base_url: https://api.expeditors.com/tracking/v2
+authentication:
+  style: OAuth 2.0 client credentials -> bearer token
+  detail: authentication/expeditors-international-of-washington-authentication.yml
+idempotency:
+  coverage: na
+  supported: false
+  header: null
+  scope: []
+  retention: null
+  note: >-
+    The resource surface is read-only — every documented resource operation is
+    a GET. The single non-GET operation is POST /oauth2/token, which mints a
+    token rather than mutating customer state, and the docs state explicitly
+    that issuing a new token does not affect tokens already issued. There is
+    therefore no mutating surface for replay protection to cover; `na` rather
+    than `none`.
+reversibility:
+  coverage: na
+  note: >-
+    No write surface exists, so there is nothing to reverse. No cancel, void,
+    refund, undo or restore operation is documented, and none is required.
+  operations: []
+dry_run_mode:
+  supported: na
+  note: >-
+    Not applicable to a read-only API. Expeditors does document that separate
+    development credentials can be requested from an account representative,
+    but publishes no sandbox host, test dataset or magic identifiers.
+pagination:
+  style: offset-limit
+  params:
+    - name: sizeLimit
+      description: Maximum number of items to return.
+      range: 1 to 100000
+      default: 1000
+    - name: offset
+      description: Start index into matching results. Increment by sizeLimit for the next page.
+      range: 0 to 100000
+      default: 0
+  response_fields: []
+  note: >-
+    Responses are bare JSON arrays with no envelope, no total count and no next
+    link — a client cannot tell from a page whether more rows exist and must
+    walk offsets until a short page returns. A separate GET shipments/count
+    operation returns the matching total. Without pagination parameters a
+    client sees at most the first 1000 rows.
+filtering:
+  params:
+    - name: ref
+      description: Prefix matched against shipment reference strings; URL-encoded, 3 to 12 characters.
+    - name: start
+      description: Earliest lastUpdateTime for the search, in GMT (yyyy-MM-dd'T'HH:mm:ss or yyyy-MM-dd). Required when `end` is used.
+    - name: end
+      description: Latest lastUpdateTime for the search, in GMT. Defaults to the current date.
+  exact_match: Dedicated /exactmatch operations return detail, events and references for a single id in one call.
+field_expansion:
+  supported: false
+  note: >-
+    No expand/fields/sparse-fieldset parameter. The /exactmatch operations are
+    the fixed-shape equivalent — they fold detail, events and references into
+    one response.
+metadata:
+  supported: false
+  note: No customer-defined metadata fields; Expeditors reference types (refType/refNumber) carry the customer's own identifiers instead.
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header is documented. Support triage is by
+    client id — the docs ask developers to quote their client ID when
+    contacting support.
+versioning:
+  style: uri-path major version
+  current: v2
+  detail: lifecycle/expeditors-international-of-washington-lifecycle.yml
+error_envelope:
+  format: oauth2-error
+  fields: [error, error_description]
+  detail: errors/expeditors-international-of-washington-problem-types.yml
+rate_limit_signaling:
+  headers_documented: false
+  status_on_exhaustion: 429
+  detail: rate-limits/expeditors-international-of-washington-rate-limits.yml
+time:
+  timezone: All date/time values are UTC/GMT.
+  format: YYYY-MM-DDThh:mm:ssTZD
+data_window:
+  note: Active shipments plus shipments completed in the last 120 days — the same source data as the EXP.O NOW visibility application.
+polling_guidance:
+  note: >-
+    Hourly polling is the documented expectation. Recommended pattern is a
+    summary list call to detect status change, then detail calls only for
+    changed shipments, to avoid unnecessary (and potentially chargeable)
+    detail requests.

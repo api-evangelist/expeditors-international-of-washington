@@ -1,0 +1,161 @@
+generated: '2026-09-07'
+method: probed
+source: live HTTPS probes of every host in the record
+note: >-
+  Named-path probe of the /.well-known/ surface plus the APIs.json root paths,
+  run against the registrable domain, www, the API host, the documentation host
+  and the EXP.O NOW console host. One real document was found: an OpenID
+  Connect discovery document served by the corporate website. It is emitted by
+  the Umbraco CMS Delivery API member-authentication layer that runs the
+  expeditors.com website — it is genuinely served by Expeditors on its own
+  host, but it authenticates website members, not the Tracking API, whose
+  token endpoint is https://api.expeditors.com/tracking/v2/oauth2/token and
+  which publishes no discovery document.
+hit_count: 1
+hosts:
+  - host: https://www.expeditors.com
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: expeditors-international-of-washington-openid-configuration.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/expeditors-negcontrol-7f3ab91c.json
+        status: 404
+  - host: https://expeditors.com
+    path_echo_control: passed
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: Same document as www.expeditors.com; not saved twice.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/expeditors-negcontrol-7f3ab91c.json
+        status: 404
+  - host: https://api.expeditors.com
+    path_echo_control: passed
+    note: >-
+      Live API host. /tracking/v2/* returns 401 (token required); every other
+      path, including all /.well-known/ paths and the negative control, returns
+      a JSON 404.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /.well-known/expeditors-negative-control-7f3ab91c.json
+        status: 404
+  - host: https://help.expeditors.com
+    path_echo_control: passed
+    note: Documentation host. All named paths 404 with an HTML error page.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+      - path: /.well-known/apis.json
+        status: 404
+      - path: /apis.json
+        status: 404
+      - path: /apis.yml
+        status: 404
+      - path: /.well-known/expeditors-negcontrol-7f3ab91c.json
+        status: 404
+  - host: https://developer.expeditors.com
+    path_echo_control: failed
+    hit_count: 0
+    note: >-
+      Angular single-page app titled "EXP.O NOW". Every /.well-known/ path,
+      /apis.json and /apis.yml return HTTP 200 with the identical 3,470-byte
+      HTML shell, and so does the negative-control path
+      /.well-known/expeditors-negcontrol-7f3ab91c.json, which cannot exist.
+      Every 200 on this host is therefore discarded — none is a document.
+    documents: []
+  - host: https://go2expo.expeditors.com
+    path_echo_control: failed
+    hit_count: 0
+    note: >-
+      EXP.O NOW console. Same catch-all behaviour — every /.well-known/ path
+      including the negative control returns the same 4,177-byte HTML shell.
+      All 200s discarded. (/apis.json and /apis.yml correctly return 404 here.)
+    documents: []
+robots_content_signals:
+  source: https://www.expeditors.com/robots.txt
+  status: 200
+  signal: 'search=yes, ai-train=no, use=reference'
+  note: >-
+    Not a /.well-known/ document, recorded here because it is the only
+    machine-readable AI-access declaration Expeditors publishes — a Cloudflare
+    Content Signals policy that permits search indexing and reference use but
+    forbids AI training, plus a full Disallow for meta-externalagent.

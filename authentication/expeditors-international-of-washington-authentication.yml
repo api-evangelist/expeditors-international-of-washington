@@ -1,0 +1,50 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm
+docs: https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm
+note: >-
+  Expeditors publishes no OpenAPI, so this profile is read from the API
+  Developer Center documentation rather than derived from securitySchemes.
+summary:
+  types: [oauth2, http]
+  api_key_in: []
+  oauth2_flows: [clientCredentials]
+schemes:
+  - name: TokenRequestBasic
+    type: http
+    scheme: basic
+    applies_to: POST /oauth2/token
+    description: >-
+      The token endpoint is authenticated with HTTP Basic: the Base64 encoding
+      of clientId:clientSecret in an `Authorization: Basic {clientCredentials}`
+      header. Client id and secret are issued by Expeditors when a customer
+      application is registered.
+    sources: [https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm]
+  - name: OAuth2ClientCredentials
+    type: oauth2
+    flow: clientCredentials
+    token_url: https://api.expeditors.com/tracking/v2/oauth2/token
+    grant_types: [client_credentials]
+    scopes: [application]
+    token_type: bearer
+    token_lifetime_seconds: 900
+    description: >-
+      POST grant_type=client_credentials (form-urlencoded) to the token
+      endpoint. No other grant type is accepted. The response carries
+      access_token, token_type "bearer", expires_in and scope "application".
+    sources: [https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm]
+  - name: BearerToken
+    type: http
+    scheme: bearer
+    applies_to: all resource endpoints under /tracking/v2
+    description: 'All resource requests carry `Authorization: Bearer {token}`.'
+    sources: [https://help.expeditors.com/globalhelp/shipment_api/get_shipments.htm]
+operational_notes:
+  - Multiple tokens may be active simultaneously; requesting a new token does not revoke earlier ones.
+  - Separate development and production credential sets are available on request from an Expeditors representative.
+  - Tokens can expire early in edge cases; the documented pattern is to reuse a token until a call returns invalid_token, then re-request and replay.
+  - The token endpoint is separately rate limited to 10 requests per hour.
+registration:
+  self_service: false
+  process: Contact an Expeditors representative with organization name plus business and technical contact names/emails.
+  url: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm

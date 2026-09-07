@@ -1,0 +1,79 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/error_codes.htm
+format: oauth2-error
+note: >-
+  Not RFC 9457. Expeditors returns the standard HTTP status plus a JSON body
+  shaped like the OAuth 2.0 error response (RFC 6749 §5.2) — an `error` slug
+  and an `error_description` string — on both token and resource endpoints.
+  There is no `type` URI, no `instance`, and no application/problem+json media
+  type. The docs state only the common configured errors are listed and point
+  at the HTTP status-code registry for the rest.
+envelope:
+  media_type: application/json
+  fields:
+    - name: error
+      description: Machine-readable error slug (OAuth 2.0 style).
+    - name: error_description
+      description: Human-readable explanation of the failure.
+  example: |
+    HTTP/1.1 401 Unauthorized
+    Content-Type: application/json
+    {
+      "error_description": "Client authentication failed because client is unknown, no client authentication was included, or an unsupported authentication method was used.",
+      "error": "invalid_client"
+    }
+problems:
+  - status: 400
+    code: invalid_request
+    title: Malformed request
+    description: >-
+      The request is missing a required parameter, includes an unsupported
+      parameter value, repeats a parameter, includes multiple credentials, uses
+      more than one client-authentication mechanism, or is otherwise malformed.
+    remediation: Verify authorization header syntax, that there are no duplicate authorization headers, and that parameter values are within the documented range.
+  - status: 400
+    code: unsupported_grant_type
+    title: Unsupported grant type
+    description: The authorization grant type is not supported by the authorization server.
+    remediation: Send grant_type=client_credentials exactly once; no other grant type is accepted.
+  - status: 401
+    code: invalid_client
+    title: Client authentication failed
+    description: Client authentication failed because the client is unknown, no client authentication was included, or an unsupported method was used.
+    remediation: Verify the Authorization header is present and that client_id:client_secret is Base64-encoded as documented.
+  - status: 401
+    code: invalid_token
+    title: Invalid or expired access token
+    description: The access token provided is expired, revoked, malformed, or otherwise invalid.
+    remediation: Request a new token and replay the failed call; confirm the token is sent in the Authorization header.
+  - status: 403
+    code: insufficient_scope
+    title: Insufficient scope
+    description: The request requires higher privileges than the access token provides.
+    remediation: Documented as unreachable — the API issues only one token type.
+  - status: 404
+    code: '404'
+    title: Resource not found
+    description: HTTP 404 Resource Not Found.
+    remediation: Verify the request URL matches the documented endpoint; contact Visibility Support if it is correct and the problem persists.
+  - status: 405
+    code: '405'
+    title: Method not allowed
+    description: HTTP 405 Method Not Allowed.
+    remediation: Verify the request method is supported by the endpoint (the resource surface is GET-only).
+  - status: 429
+    code: too_many_requests
+    title: Rate limit exceeded
+    description: The client has exceeded the maximum number of requests for the period.
+    remediation: Wait until the beginning of the next clock hour before sending more requests.
+  - status: 500
+    code: '500'
+    title: Internal server error
+    description: The Expeditors API service has experienced a failure. Also returned when a request contains encoded spaces or other non-alphanumeric values, or when token requests are issued in large bursts.
+    remediation: Retry later; contact Visibility Support if the problem persists.
+retry_guidance:
+  source: https://help.expeditors.com/globalhelp/shipment_api/best_practices.htm
+  note: >-
+    Documented policy follows HTTP/1.1 semantics — 4xx responses SHOULD NOT be
+    repeated without fixing the request; 5xx responses MAY be retried later.

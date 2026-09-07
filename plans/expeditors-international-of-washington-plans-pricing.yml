@@ -1,0 +1,26 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+plan_count: 0
+note: >-
+  Expeditors publishes no plans, tiers or prices for the Tracking API. There is
+  no pricing page on the developer surface and no self-service sign-up: access
+  is granted to existing Expeditors transportation customers, and credentials
+  are issued by an account representative after the customer supplies an
+  organization name plus business and technical contacts. The only cost signal
+  in the public docs is oblique — the Best Practices page warns that
+  unnecessary shipment-detail calls mean "in cases where charges are accrued,
+  additional costs can add up quickly", which implies metered or chargeable
+  usage for some customers but states neither a rate nor which customers it
+  applies to. A default quota of 2,000 requests per hour is documented as a
+  rate limit, not an entitlement.
+plans: []
+onboarding:
+  self_service: false
+  url: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+  required_fields:
+    - Organization name
+    - Customer business contact name
+    - Customer business contact email
+    - Customer technical contact name
+    - Customer technical contact email

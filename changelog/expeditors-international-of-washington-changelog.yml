@@ -1,0 +1,25 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+scheme: semver
+current_version: v2
+dated: false
+note: >-
+  Expeditors publishes no dated changelog. The only public release surface is a
+  "System Notifications — What's New with the API?" block on the API Developer
+  Center landing page, which carries the most recent change without a date or a
+  version number. Prior entries are not archived, so no history can be
+  reconstructed. Registered API users additionally receive release notices by
+  email.
+entries:
+  - version: null
+    date: null
+    breaking: false
+    additions:
+      - GET shipments/{id}/documents/download
+      - GET consignments/{id}/documents/download
+    highlights: >-
+      "Two New API Calls - Bulk Download Documents" — bulk document download
+      added for shipments as well as consignments and cross-dock shipments.
+    source: https://help.expeditors.com/globalhelp/shipment_api/home.htm

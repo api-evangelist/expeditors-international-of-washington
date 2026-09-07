@@ -1,0 +1,24 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  Expeditors API Developer Center and live probes of api.expeditors.com/mcp and
+  mcp.expeditors.com
+status: none
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: probed
+tools: []
+note: >-
+  Expeditors publishes no MCP server. api.expeditors.com/mcp returns 404 and
+  mcp.expeditors.com does not resolve (probed 2026-09-07); no MCP server is
+  named in the developer documentation, in any registry, or on the corporate
+  technology pages. No candidate tool list is derived either: the pipeline
+  derives candidates from an OpenAPI, and Expeditors publishes none — inventing
+  tool names from prose documentation would fabricate an input schema. The
+  documented operation inventory is recorded instead in
+  data-model/expeditors-international-of-washington-data-model.yml. No
+  MCPServer pointer is emitted.

@@ -1,0 +1,21 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  Registry searches of npm, PyPI and GitHub, plus the Expeditors API Developer
+  Center, which links no SDK, sample code or repository.
+package_count: 0
+packages: []
+note: >-
+  No first-party Expeditors client library exists in any public registry.
+  Checked 2026-09-07: registry.npmjs.org search for "expeditors" returns only
+  unrelated third-party packages (e.g. pacific-expeditors-styleguide, an
+  unaffiliated style guide last published 2017); pypi.org/pypi/expeditors/json
+  returns 404; api.github.com/orgs/expeditors returns 404 — Expeditors operates
+  no public GitHub organization, and the repositories matching the name belong
+  to unrelated users. The API Developer Center publishes no SDKs, no sample
+  repository and no Postman collection; its examples are raw HTTPie request
+  transcripts. No SDKs pointer is emitted.
+registries_checked:
+  - {registry: npm, query: expeditors, result: no first-party package}
+  - {registry: pypi, query: expeditors, result: '404'}
+  - {registry: github, query: 'orgs/expeditors', result: '404 — no organization'}

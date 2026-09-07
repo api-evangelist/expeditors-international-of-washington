@@ -1,0 +1,43 @@
+generated: '2026-09-07'
+method: searched
+source: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+docs: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+limit_count: 2
+rate_limits:
+  - name: Default API rate limit
+    scope: per-client
+    limit: 2000
+    window: 1 hour
+    burst: null
+    reset: >-
+      Fixed clock hour, measured in 60-minute increments (e.g. 01:00:00 to
+      01:59:59) — not from session start. The 429 persists until the next hour
+      begins.
+    status_on_exhaustion: 429
+    error_code: too_many_requests
+    source: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+  - name: Token endpoint rate limit
+    scope: per-client
+    applies_to: POST /oauth2/token
+    limit: 10
+    window: 1 hour
+    burst: null
+    status_on_exhaustion: 429
+    note: >-
+      Docs advise requesting a new access token only when the previous one has
+      expired or is about to (roughly every 2 hours); bursts of token requests
+      also produce HTTP 500 and can cancel out other token requests.
+    source: https://help.expeditors.com/globalhelp/shipment_api/POST_oauth2_token.htm
+response_headers:
+  documented: false
+  headers: []
+  note: >-
+    Expeditors documents no RateLimit-*/X-RateLimit-*/Retry-After response
+    headers. A client learns it is throttled only from the 429 status and the
+    too_many_requests error body, so remaining quota is not observable at
+    runtime.
+pagination_guidance:
+  note: >-
+    Default page size is 1000 rows when sizeLimit/offset are omitted; maximum
+    sizeLimit is 100000. Docs recommend polling shipment summaries hourly
+    rather than re-fetching detail.
