@@ -1,19 +1,14 @@
 aid: expeditors-international-of-washington
 name: Expeditors International of Washington
-description: >-
-  Expeditors International of Washington is a Fortune 500 global logistics
-  company providing air and ocean freight forwarding, customs brokerage and
-  trade compliance, order management, warehousing and distribution, and
-  supply-chain consulting through a company-owned network of branches. Its
-  technology arm publishes the EXP.O NOW visibility platform and a public
-  Expeditors Tracking API (v2) documented at its API Developer Center — a
-  read-only REST/JSON service over shipments, containers, order-management
-  containers, consignments and cross-dock movements, their events, references
-  and documents. Access is OAuth 2.0 client-credentials with bearer tokens and
-  a default limit of 2,000 requests per hour; credentials are issued by an
-  Expeditors representative rather than through self-service sign-up. Bulk
-  integration is also delivered through traditional EDI and other B2B
-  protocols.
+description: Expeditors International of Washington is a Fortune 500 global logistics company providing
+  air and ocean freight forwarding, customs brokerage and trade compliance, order management, warehousing
+  and distribution, and supply-chain consulting through a company-owned network of branches. Its technology
+  arm publishes the EXP.O NOW visibility platform and a public Expeditors Tracking API (v2) documented
+  at its API Developer Center — a read-only REST/JSON service over shipments, containers, order-management
+  containers, consignments and cross-dock movements, their events, references and documents. Access is
+  OAuth 2.0 client-credentials with bearer tokens and a default limit of 2,000 requests per hour; credentials
+  are issued by an Expeditors representative rather than through self-service sign-up. Bulk integration
+  is also delivered through traditional EDI and other B2B protocols.
 kind: contract
 deliveryModel:
   model: unknown
@@ -40,16 +35,16 @@ accessModel:
   method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/expeditors-international-of-washington.png
 tags:
-  - Customs
-  - Freight Forwarding
-  - Logistics
-  - Supply Chain
-  - Warehousing
-  - Shipment Tracking
-  - Transportation
-  - Order Management
-  - Customs Brokerage
-  - Visibility
+- Customs
+- Freight Forwarding
+- Logistics
+- Supply Chain
+- Warehousing
+- Shipment Tracking
+- Transportation
+- Order Management
+- Customs Brokerage
+- Visibility
 url: https://raw.githubusercontent.com/api-evangelist/expeditors-international-of-washington/refs/heads/main/apis.yml
 created: '2026-03-21'
 modified: '2026-09-07'
@@ -57,73 +52,29 @@ position: Producing
 access: 3rd-Party
 specificationVersion: '0.23'
 apis:
-  - aid: expeditors-international-of-washington-tracking
-    name: Expeditors Tracking API
-    description: >-
-      Read-only REST/JSON API that lets a contracted Expeditors customer pull
-      real-time shipment, container, order-management container, consignment
-      and cross-dock tracking data into its own enterprise and reporting
-      systems — including status, milestone events, trace references and
-      document images. Same source data as the EXP.O NOW visibility
-      application; active shipments plus those completed in the last 120 days.
-      Authentication is OAuth 2.0 client credentials returning a bearer token.
-    humanURL: https://help.expeditors.com/globalhelp/shipment_api/home.htm
-    baseURL: https://api.expeditors.com/tracking/v2
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/expeditors-international-of-washington.png
-    tags:
-      - Shipment Tracking
-      - Logistics
-      - Containers
-      - Order Management
-      - Documents
-    properties:
-      - type: Documentation
-        url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
-      - type: APIReference
-        url: https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
-      - type: GettingStarted
-        url: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
-      - type: Authentication
-        url: authentication/expeditors-international-of-washington-authentication.yml
-      - type: OAuthScopes
-        url: scopes/expeditors-international-of-washington-scopes.yml
-      - type: RateLimits
-        url: rate-limits/expeditors-international-of-washington-rate-limits.yml
-      - type: ErrorCatalog
-        url: errors/expeditors-international-of-washington-problem-types.yml
-      - type: Lifecycle
-        url: lifecycle/expeditors-international-of-washington-lifecycle.yml
-      - type: Conventions
-        url: conventions/expeditors-international-of-washington-conventions.yml
-      - type: DataModel
-        url: data-model/expeditors-international-of-washington-data-model.yml
-common:
-  - type: Website
-    url: https://www.expeditors.com
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/expeditors
-  - type: DeveloperPortal
-    url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+- aid: expeditors-international-of-washington:expeditors-international-of-washington-tracking
+  name: Expeditors Tracking API
+  description: Read-only REST/JSON API that lets a contracted Expeditors customer pull real-time shipment,
+    container, order-management container, consignment and cross-dock tracking data into its own enterprise
+    and reporting systems — including status, milestone events, trace references and document images.
+    Same source data as the EXP.O NOW visibility application; active shipments plus those completed in
+    the last 120 days. Authentication is OAuth 2.0 client credentials returning a bearer token.
+  humanURL: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+  baseURL: https://api.expeditors.com/tracking/v2
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/expeditors-international-of-washington.png
+  tags:
+  - Shipment Tracking
+  - Logistics
+  - Containers
+  - Order Management
+  - Documents
+  properties:
   - type: Documentation
     url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
   - type: APIReference
     url: https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
   - type: GettingStarted
     url: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
-  - type: Support
-    url: https://www.expeditors.com/contact/
-  - type: Blog
-    url: https://www.expeditors.com/horizon-blog/
-  - type: Login
-    url: https://go2expo.expeditors.com/
-  - type: TermsOfService
-    url: https://web.expeditors.com/legal/index.html#terms
-  - type: PrivacyPolicy
-    url: https://web.expeditors.com/legal/index.html#privacy
-  - type: Deprecation
-    url: https://help.expeditors.com/globalhelp/shipment_api/Version_Policy.htm
-  - type: ChangeLog
-    url: changelog/expeditors-international-of-washington-changelog.yml
   - type: Authentication
     url: authentication/expeditors-international-of-washington-authentication.yml
   - type: OAuthScopes
@@ -138,19 +89,60 @@ common:
     url: conventions/expeditors-international-of-washington-conventions.yml
   - type: DataModel
     url: data-model/expeditors-international-of-washington-data-model.yml
-  - type: Conformance
-    url: conformance/expeditors-international-of-washington-conformance.yml
-  - type: Plans
-    url: plans/expeditors-international-of-washington-plans-pricing.yml
-  - type: LLMsTxt
-    url: llms/expeditors-international-of-washington-llms.txt
-  - type: WellKnown
-    url: well-known/expeditors-international-of-washington-well-known.yml
-  - type: DomainSecurity
-    url: security/expeditors-international-of-washington-domain-security.yml
+common:
+- type: Website
+  url: https://www.expeditors.com
+- type: LinkedIn
+  url: https://www.linkedin.com/company/expeditors
+- type: DeveloperPortal
+  url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+- type: Documentation
+  url: https://help.expeditors.com/globalhelp/shipment_api/home.htm
+- type: APIReference
+  url: https://help.expeditors.com/globalhelp/shipment_api/data_types.htm
+- type: GettingStarted
+  url: https://help.expeditors.com/globalhelp/shipment_api/getting_started.htm
+- type: Support
+  url: https://www.expeditors.com/contact/
+- type: Blog
+  url: https://www.expeditors.com/horizon-blog/
+- type: Login
+  url: https://go2expo.expeditors.com/
+- type: TermsOfService
+  url: https://web.expeditors.com/legal/index.html#terms
+- type: PrivacyPolicy
+  url: https://web.expeditors.com/legal/index.html#privacy
+- type: Deprecation
+  url: https://help.expeditors.com/globalhelp/shipment_api/Version_Policy.htm
+- type: ChangeLog
+  url: changelog/expeditors-international-of-washington-changelog.yml
+- type: Authentication
+  url: authentication/expeditors-international-of-washington-authentication.yml
+- type: OAuthScopes
+  url: scopes/expeditors-international-of-washington-scopes.yml
+- type: RateLimits
+  url: rate-limits/expeditors-international-of-washington-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/expeditors-international-of-washington-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/expeditors-international-of-washington-lifecycle.yml
+- type: Conventions
+  url: conventions/expeditors-international-of-washington-conventions.yml
+- type: DataModel
+  url: data-model/expeditors-international-of-washington-data-model.yml
+- type: Conformance
+  url: conformance/expeditors-international-of-washington-conformance.yml
+- type: Plans
+  url: plans/expeditors-international-of-washington-plans-pricing.yml
+- type: LLMsTxt
+  url: llms/expeditors-international-of-washington-llms.txt
+- type: WellKnown
+  url: well-known/expeditors-international-of-washington-well-known.yml
+- type: DomainSecurity
+  url: security/expeditors-international-of-washington-domain-security.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-enrichment:
   date: '2026-09-07'
   status: enriched
