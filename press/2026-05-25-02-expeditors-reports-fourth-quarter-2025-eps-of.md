@@ -1,7 +1,9 @@
 ---
 title: EXPEDITORS REPORTS FOURTH QUARTER 2025 EPS OF ...
 url: https://investor.expeditors.com/~/media/Files/E/Expeditors-IR-V2/press-release/2026/EXPDQ41.PDF
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Expeditors International of Washington" press release artificial intelligence'
 position: 2
 source: serpapi-google
